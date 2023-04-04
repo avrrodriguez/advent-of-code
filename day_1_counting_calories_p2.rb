@@ -1,14 +1,14 @@
 def find_elf_with_most_calories(elf_calories_dict)
-  elf_highest_calories = 0
+  elf_calories_array = []
+
   elf_calories_dict.each do |_elf, elf_calories|
     elf_calories_sum = elf_calories.map { |calorie| calorie.to_i }.sum
 
-    if elf_calories_sum > elf_highest_calories
-      elf_highest_calories = elf_calories_sum
-    end
+    elf_calories_array << elf_calories_sum
   end
 
-  p elf_highest_calories
+  elf_calories_array = elf_calories_array.sort
+  p elf_calories_array[-1] + elf_calories_array[-2] + elf_calories_array[-3]
 end
 
 def import_elf_calories
