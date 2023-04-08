@@ -1,43 +1,43 @@
-def calculate_score(shape, result)
-  shape_point_dict = { "X" => 1, "Y" => 2, "Z" => 3 }
-  puts shape, shape_point_dict[shape]
-  if result == "1"
+def calculate_score(shape, desired_result)
+  shape_point_dict = { "A" => 1, "B" => 2, "C" => 3 }
+  puts shape, desired_result, shape_point_dict[shape]
+  if desired_result == "Z"
     return shape_point_dict[shape] + 6
-  elsif result == "1/2"
+  elsif desired_result == "Y"
     return shape_point_dict[shape] + 3
   else
     return shape_point_dict[shape]
   end
 end
 
-def result(opponent_shape, your_shape)
-  # Rock is A, X
-  # Paper is B, Y
-  # Scissors is C, Z
+def result(opponent_shape, result_needed)
+  # Rock is A, X is lose
+  # Paper is B, Y is draw
+  # Scissors is C, Z is win
 
   if opponent_shape == "A"
-    if your_shape == "X"
-      return "1/2"
-    elsif your_shape == "Y"
-      return "1"
+    if result_needed == "X"
+      return "C"
+    elsif result_needed == "Y"
+      return "A"
     else
-      return "0"
+      return "B"
     end
   elsif opponent_shape == "B"
-    if your_shape == "X"
-      return "0"
-    elsif your_shape == "Y"
-      return "1/2"
+    if result_needed == "X"
+      return "A"
+    elsif result_needed == "Y"
+      return "B"
     else
-      return "1"
+      return "C"
     end
   else
-    if your_shape == "X"
-      return "1"
-    elsif your_shape == "Y"
-      return "0"
+    if result_needed == "X"
+      return "B"
+    elsif result_needed == "Y"
+      return "C"
     else
-      return "1/2"
+      return "A"
     end
   end
 end
@@ -48,7 +48,7 @@ def import_strategy_guide
   File.foreach("./puzzle-inputs/day_2.txt") { |line|
     result = result(line[0], line[2])
     puts line[2].class
-    your_score += calculate_score(line[2], result)
+    your_score += calculate_score(result, line[2])
   }
 
   puts your_score
