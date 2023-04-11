@@ -1,13 +1,12 @@
 def compare_sections(sections1, sections2)
-  # p "sections 1 ranges #{sections1[0]} #{sections1[-1]}"
-  # p "sections 2 ranges #{sections2[0]} #{sections2[-1]}"
+  p "sections 1 ranges #{sections1[0]} #{sections1[-1]}, sections 2 ranges #{sections2[0]} #{sections2[-1]}"
 
-  if (sections2[0].to_i >= sections1[0].to_i) & (sections2[-1].to_i <= sections1[-1].to_i)
-    return true
-  elsif (sections1[0].to_i >= sections2[0].to_i) & (sections1[1].to_i <= sections2[-1].to_i)
-    return true
-  else
+  if (sections2[0].to_i > sections1[1].to_i) | (sections2[-1].to_i < sections1[0].to_i)
     return false
+  elsif (sections1[0].to_i > sections2[-1].to_i) | (sections1[1].to_i < sections2[0].to_i)
+    return false
+  else
+    return true
   end
 end
 
