@@ -1,14 +1,9 @@
-def compare_sections(sections1, sections2)
-  # p "sections 1 ranges #{sections1[0]} #{sections1[-1]}"
-  # p "sections 2 ranges #{sections2[0]} #{sections2[-1]}"
+# def section2_range_inside_section1_range?(sections1, sections2)
+#   (sections2[0].to_i >= sections1[0].to_i) && (sections2[-1].to_i <= sections1[-1].to_i)
+# end
 
-  if (sections2[0].to_i >= sections1[0].to_i) & (sections2[-1].to_i <= sections1[-1].to_i)
-    return true
-  elsif (sections1[0].to_i >= sections2[0].to_i) & (sections1[1].to_i <= sections2[-1].to_i)
-    return true
-  else
-    return false
-  end
+def sections_overlapping?(sections1, sections2)
+  (sections1[0].to_i >= sections2[0].to_i) && (sections1[-1].to_i <= sections2[-1].to_i)
 end
 
 def import_section_assignments
@@ -23,12 +18,12 @@ def import_section_assignments
 
     # p section_ranges[0]
     # p section_ranges[1]
-    if compare_sections(section_ranges[0], section_ranges[1])
-      overlapping_assignments += 1
-    end
+    overlapping_assignments += 1 if sections_overlapping?(section_ranges[0], section_ranges[1]) ||
+                                    sections_overlapping?(section_ranges[1], section_ranges[0])
   }
 
   p overlapping_assignments
 end
 
+# file.open readlines chomp true
 import_section_assignments
