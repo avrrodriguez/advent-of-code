@@ -11,9 +11,11 @@ def add_to_crate_stacks(crate_line)
 end
 
 def move_crate_to_another_stack(move_amount, from, to)
-  for move in 0..move_amount - 1
-    @crate_stacks_dict[to] << @crate_stacks_dict[from].pop()
-  end
+  # for move in 0..move_amount - 1
+  @crate_stacks_dict[to] << @crate_stacks_dict[from].pop(move_amount)
+  # end
+
+  @crate_stacks_dict[to].flatten!
 end
 
 def main(puzzle_input)
@@ -29,7 +31,7 @@ def main(puzzle_input)
   puzzle_input.each do |line|
     next if !line.split(" ").include?("move")
 
-    crate_stack_ids = line.split(" ").select! { |elem| elem.to_i != 0 }.map { |num| num.to_i }
+    crate_stack_ids = line.split(" ").select { |elem| elem.to_i != 0 }.map { |num| num.to_i }
 
     move_crate_to_another_stack(crate_stack_ids[0], crate_stack_ids[1], crate_stack_ids[2])
   end
