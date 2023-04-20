@@ -3,7 +3,7 @@ def call(puzzle_input)
   puzzle_input.split("").each_with_index do |letter, index|
     # p [letter, index, uniq_chars]
     uniq_chars = uniq_chars[uniq_chars.find_index(letter) + 1..-1] if uniq_chars.include?(letter)
-    return index + 1 if uniq_chars.length == 3
+    return index + 1 if uniq_chars.length == 13
 
     uniq_chars << letter
   end
