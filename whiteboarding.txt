@@ -1,0 +1,27 @@
+
+
+
+Def recursion(command, dictionary, total_size, dir_size_less_than_100k)
+
+	dictionary = {"root":{"mthvntdd": {"ftrccld": {}}, "total_file_size": number}}
+
+	dictionary["root"]["mthvntdd"]["ftrccld"]
+	for every command
+		if commmand include cd and is dir
+			return recursion(dictionary[root][file_path_name])
+		if command include cd and is ..
+			return 
+
+
+puzzle_input = File.readlines("./puzzle-inputs/day_7.txt").map(&:chomp)
+
+
+Dictionary = {"root":{"mthvntdd": {}, "total_file_size": number}}
+
+Def recursion() 
+
+If command cd .. return 
+
+...
+...
+....
