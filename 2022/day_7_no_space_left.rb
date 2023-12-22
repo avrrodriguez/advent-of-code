@@ -10,6 +10,7 @@ end
 def add_files_to_level_in_dictionary(puzzle_input, file_structure, line_number)
   line_number += 1
   current_command = read_command(puzzle_input, line_number)
+  # p [file_structure, line_number, current_command]
   while !current_command.include?("$")
     file_structure[current_command[1]] = {} if current_command.include?("dir")
     file_structure[current_command[0]] = current_command[1] if !current_command.include?("dir")
@@ -27,7 +28,7 @@ def look_in_hash_level(puzzle_input, file_structure, current_file_path, line_num
     # p puzzle_input[line_number]
     current_command = read_command(puzzle_input, line_number)
     break if current_command[2] == ".."
-    p [current_command, file_structure]
+    p [current_command, file_structure, current_file_path]
 
     if current_command.include?("cd")
       look_in_hash_level(puzzle_input, file_structure[file_structure[current_command[2].to_s]], current_command[2], line_number + 1)
@@ -37,7 +38,7 @@ def look_in_hash_level(puzzle_input, file_structure, current_file_path, line_num
     end
 
     if current_command.include?("ls")
-      added_files = add_files_to_level_in_dictionary(puzzle_input, file_structure[current_file_path.to_s], line_number + 1)
+      added_files = add_files_to_level_in_dictionary(puzzle_input, file_structure, line_number + 1)
       line_number = added_files[0]
       file_structure[current_file_path.to_s] = added_files[1]
     end
